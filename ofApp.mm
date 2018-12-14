@@ -15,7 +15,7 @@ void ofApp::setup(){
     //cout << "1: CenterX: " <<  centerX << " CenterY: " << centerY << endl;
     //cout << "2: CenterX: " <<  centerX/2 << " CenterY: " << centerY/2 << endl;
     ofSetFrameRate(60);
-    ofBackground(0);
+    //ofBackground(0);
     coreMotion.setupAccelerometer();
     
     lastTime = ofGetElapsedTimef();
@@ -65,6 +65,8 @@ void ofApp::setup(){
     soundPlayer.setLoop(true);
     soundPlayer.play();
     beePic.load("Bee.gif");
+    honeyComb.load("honeycomb.jpg");
+    
     
 }
 
@@ -85,7 +87,7 @@ void ofApp::draw(){
         //myfont.drawString(mText, 0 - mTextWidth/2, mTextHeight/2);
     
     //y = ((x / 99.0) * 2) - 1
-    
+    honeyComb.draw(centerX,centerY, ofGetWidth(), ofGetHeight());
     for(int i = 0; i < 100; i++){
         float posXRandom = ofRandom(0, ofGetWidth());
         float posYRandom = ofRandom(0, ofGetHeight());
@@ -143,7 +145,7 @@ void ofApp::draw(){
         //posY = ofMap(i-pow(1.5, i), 35, 0, 0, ofGetHeight());
         
             if (i % lineInterval == 0) {
-                ofSetColor(0, newColor, newColor);
+                ofSetColor(0, 0, 0);
                 ofDrawRectangle(0, 0, distanceOfSquares*3, 15);
             } else {
                 ofSetColor(newColor, newColor, 0);
@@ -159,7 +161,7 @@ void ofApp::draw(){
         ofPopMatrix();
         }
     ofPopMatrix();
-        
+    
 }
 //--------------------------------------------------------------
 void ofApp::exit(){

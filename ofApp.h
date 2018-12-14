@@ -51,7 +51,7 @@ class ofApp : public ofxiOSApp {
     bool touched;
     
     ofImage beePic;
-    
+    ofImage honeyComb;
     
     
     
