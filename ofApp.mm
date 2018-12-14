@@ -4,7 +4,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){	
-    soundPlayer.load("crash.wav");
+    soundPlayer.load("bees.wav");
     myfont.load("Comicsans.ttf", 8);
     
     
@@ -24,6 +24,7 @@ void ofApp::setup(){
     touchPoint.set(0, 0);
     radius = 50;
     counter = 0.0;
+    imagePoint.set(500,1340);
     
     minI = 0;
     maxI = 100;
@@ -61,6 +62,9 @@ void ofApp::setup(){
     
     mySizeTrans = 250;
     
+    soundPlayer.setLoop(true);
+    soundPlayer.play();
+    beePic.load("Bee.gif");
     
 }
 
@@ -82,8 +86,15 @@ void ofApp::draw(){
     
     //y = ((x / 99.0) * 2) - 1
     
+    for(int i = 0; i < 100; i++){
+        float posXRandom = ofRandom(0, ofGetWidth());
+        float posYRandom = ofRandom(0, ofGetHeight());
+        beePoint[i].set(posXRandom, posYRandom);
+        beePic.draw(beePoint[i], 20,20);
+    }
     
-    
+    float soundVol = ofMap(imagePoint.y, ofGetHeight() * 3, 0, 0, 1);
+    soundPlayer.setVolume(soundVol);
     ofPushMatrix();
         ofTranslate(centerX, ofGetHeight());
     //cout << mySizeTrans << endl;
@@ -157,7 +168,7 @@ void ofApp::exit(){
 
 //--------------------------------------------------------------
 void ofApp::touchDown(ofTouchEventArgs & touch){
-    //soundPlayer.play();
+    
     if(touch.id==0 && touch.id != 1){
         dragVector=imagePoint-touch;
     }
@@ -173,6 +184,7 @@ void ofApp::touchMoved(ofTouchEventArgs & touch){
     if(touch.id==0 && touch.id != 1){
         touchPoint.set(touch);
         imagePoint=touch+dragVector;
+        cout << imagePoint << endl;
     }
     if(touch.id==1 && touched){
         mySizeTrans=touchPoint.distance(touch);

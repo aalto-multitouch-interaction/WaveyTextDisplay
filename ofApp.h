@@ -43,10 +43,14 @@ class ofApp : public ofxiOSApp {
     vector<string> s;
     vector<string> sn;
     
+    ofVec2f beePoint[100];
+    
     ofPoint imagePoint;
     ofVec2f dragVector, dragTwoVector;
     float mySizeTrans;
     bool touched;
+    
+    ofImage beePic;
     
     
     
